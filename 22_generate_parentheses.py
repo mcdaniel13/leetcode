@@ -7,7 +7,7 @@ class Solution:
         self.generateParenthesisString(li, "", 0, 0, n)
         return li
 
-    def generateParenthesisString(self, li: List[str], s: str, open: int, close: int, n: int):
+    def generateParenthesisString(self, li: List[str], s: str, open: int, close: int, n: int) -> None:
         if len(s) == 2 * n:
             li.append(s)
             return

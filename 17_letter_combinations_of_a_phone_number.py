@@ -7,7 +7,7 @@ class Solution:
                    "jkl", "mno", "pqrs",
                    "tuv", "wxyz"]
 
-    def findLetterCombinations(self, res: List[str], digits: str, idx: int, s: str):
+    def findLetterCombinations(self, res: List[str], digits: str, idx: int, s: str) -> None:
         if idx == len(digits):
             res.append(s)
             return

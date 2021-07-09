@@ -1,5 +1,5 @@
 class Solution:
-    def countAndSayInternal(self, n: int, step: int, s: str):
+    def countAndSayInternal(self, n: int, step: int, s: str) -> str:
         if step >= n:
             return s
 

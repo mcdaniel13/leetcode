@@ -2,7 +2,7 @@ from typing import List
 
 
 class Solution:
-    def binarySearch(self, nums: List[int], target: int, ran: List[int], l: int, r: int):
+    def binarySearch(self, nums: List[int], target: int, ran: List[int], l: int, r: int) -> None:
         if l > r:
             # print("l >= r")
             return

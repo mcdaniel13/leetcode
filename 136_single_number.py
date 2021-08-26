@@ -16,6 +16,12 @@ class Solution:
 
         return -1
 
+    def singleNumber2(self, nums: List[int]) -> int:
+        res = 0
+        for num in nums:
+            res ^= num
+
+        return res
 
 sol = Solution()
 print(sol.singleNumber([2, 2, 1]))

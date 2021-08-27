@@ -1,3 +1,4 @@
+import sys
 from typing import List
 
 
@@ -17,6 +18,14 @@ class Solution:
 
         return res
 
+    def maxProfit2(self, prices: List[int]) -> int:
+        minPrice = sys.maxsize
+        maxProfit = 0
+        for price in prices:
+            minPrice = min(minPrice, price)
+            maxProfit = max(maxProfit, price - minPrice)
+
+        return maxProfit
 
 sol = Solution()
 print(sol.maxProfit([7, 1, 5, 3, 6, 4]))

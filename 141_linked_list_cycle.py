@@ -14,3 +14,15 @@ class Solution:
             cur = head.next
 
         return False
+
+    def hasCycle2(self, head: ListNode) -> bool:
+        nodeSet = set()
+        node = head
+        while node:
+            if node in nodeSet:
+                return True
+            else:
+                nodeSet.add(node)
+                node = node.next
+
+        return False

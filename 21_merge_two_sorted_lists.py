@@ -1,7 +1,3 @@
-# Definition for singly-linked list.
-from typing import List
-
-
 class ListNode:
     def __init__(self, val=0, next=None):
         self.val = val
@@ -29,20 +25,34 @@ class Solution:
 
         return head.next
 
+    def mergeTwoLists2(self, l1: Optional[ListNode], l2: Optional[ListNode]) -> Optional[ListNode]:
+        if not l1:
+            return l2
+        if not l2:
+            return l1
 
-def createListNode(vals: List[int]) -> ListNode:
-    head = ListNode(-1)
-    cur = head
-    for i in range(len(vals)):
-        cur.val = vals[i]
-        if i < len(vals) - 1:
-            cur.next = ListNode()
-            cur = cur.next
+        head = None
+        if l1.val < l2.val:
+            head = l1
+            l1 = l1.next
+        else:
+            head = l2
+            l2 = l2.next
 
-    return head
+        node = head
+        while l1 and l2:
+            if l1.val < l2.val:
+                node.next = l1
+                l1 = l1.next
+            else:
+                node.next = l2
+                l2 = l2.next
+            node = node.next
 
+        if l1:
+            node.next = l1
 
-sol = Solution()
-print(sol.mergeTwoLists(createListNode([1, 2, 4]), createListNode([1, 3, 4])))
-print(sol.mergeTwoLists(createListNode([]), createListNode([])))
-print(sol.mergeTwoLists(createListNode([]), createListNode([0])))
+        if l2:
+            node.next = l2
+
+        return head

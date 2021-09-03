@@ -25,6 +25,19 @@ class Solution:
 
         return res
 
+    def productExceptSelf2(self, nums: List[int]) -> List[int]:
+        n = len(nums)
+        l = r = 1
+        res = [1] * n
+
+        for i in range(n):
+            res[i] *= l
+            l *= nums[i]
+
+            res[n - 1 - i] *= r
+            r *= nums[n - 1 - i]
+
+        return res
 
 sol = Solution()
 print(sol.productExceptSelf([1, 2, 3, 4]))

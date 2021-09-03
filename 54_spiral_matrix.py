@@ -37,6 +37,36 @@ class Solution:
 
         return arr
 
+    def spiralOrder2(self, matrix: List[List[int]]) -> List[int]:
+        vertlen = len(matrix)
+        horilen = len(matrix[0])
+        direction = [[0, 1], [1, 0], [0, -1], [-1, 0]]
+        dIdx = 0
+        i = j = 0
+        res = [matrix[0][0]]
+        matrix[0][0] = 101
+        while True:
+            ni = i + direction[dIdx][0]
+            nj = j + direction[dIdx][1]
+            if 0 <= ni < vertlen and 0 <= nj < horilen and matrix[ni][nj] < 101:
+                res.append(matrix[ni][nj])
+                matrix[ni][nj] = 101
+                i = ni
+                j = nj
+            else:
+                dIdx = (dIdx + 1) % 4
+                ni = i + direction[dIdx][0]
+                nj = j + direction[dIdx][1]
+                if 0 <= ni < vertlen and 0 <= nj < horilen and matrix[ni][nj] < 101:
+                    res.append(matrix[ni][nj])
+                    matrix[ni][nj] = 101
+                    i = ni
+                    j = nj
+                else:
+                    break
+
+        return res
+
 sol = Solution()
 print(sol.spiralOrder([[1,2,3],[4,5,6],[7,8,9]]))
 print(sol.spiralOrder([[1,2,3,4],[5,6,7,8],[9,10,11,12]]))

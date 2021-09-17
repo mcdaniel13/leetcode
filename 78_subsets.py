@@ -18,6 +18,7 @@ class Solution:
         self.findSubset(nums, [], res, 0)
         return res
 
+
 sol = Solution()
 print(sol.subsets([1,2,3]))
 print(sol.subsets([0]))

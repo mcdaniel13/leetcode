@@ -25,6 +25,24 @@ class Solution:
 
         return head
 
+    def removeNthFromEnd2(self, head: Optional[ListNode], n: int) -> Optional[ListNode]:
+        arr = []
+        cur = head
+        while cur:
+            arr.append(cur)
+            cur = cur.next
+
+        if len(arr) <= 1:
+            return None
+
+        if arr[-n] == arr[-1]:
+            arr[-n - 1].next = None
+        elif arr[-n] == arr[0]:
+            head = arr[1]
+        else:
+            arr[-n - 1].next = arr[-n - 1].next.next
+        return head
+
 def createListNode(vals: List[int]) -> ListNode:
     head = ListNode()
     cur = head

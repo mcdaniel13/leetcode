@@ -6,6 +6,29 @@ class Solution:
         self.dir = [[0, 1], [0, -1], [1, 0], [-1, 0]]
 
     def numIslands(self, grid: List[List[str]]) -> int:
+        def dfs(x, y):
+            for i in range(4):
+                nx = dir[i][0] + x
+                ny = dir[i][1] + y
+                if 0 <= nx < m and 0 <= ny < n and grid[nx][ny] == '1':
+                    grid[nx][ny] = 'X'
+                    dfs(nx, ny)
+
+        dir = [[0, 1], [0, -1], [1, 0], [-1, 0]]
+        m = len(grid)
+        n = len(grid[0])
+        res = 0
+
+        for i in range(m):
+            for j in range(n):
+                if grid[i][j] == '1':
+                    grid[i][j] = 'X'
+                    dfs(i, j)
+                    res += 1
+
+        return res
+
+    def numIslands_bfs(self, grid: List[List[str]]) -> int:
         res = 0
         for i in range(len(grid)):
             for j in range(len(grid[i])):

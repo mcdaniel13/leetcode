@@ -4,21 +4,21 @@ from typing import List
 class Solution:
     def partition(self, s: str) -> List[List[str]]:
         res = []
-        self.check(s, [], res)
+        self.recursive(s, [], res)
         return res
 
-    def check(self, s: str, sub: List[str], res: List[List[str]]) -> None:
-        if s == "":
-            new_sub = sub[:]
-            res.append(new_sub)
+    def recursive(self, s: str, arr: List[str], res: List[List[str]]):
+        if len(s) == 0:
+            res.append(list(arr))
             return
 
         for i in range(len(s)):
             st = s[:i + 1]
             if st == st[::-1]:
-                sub.append(st)
-                self.check(s[i + 1:], sub, res)
-                sub.pop()
+                arr.append(st)
+                self.recursive(s[i + 1:], arr, res)
+                arr.pop(-1)
+
 
 sol = Solution()
 print(sol.partition("aab"))

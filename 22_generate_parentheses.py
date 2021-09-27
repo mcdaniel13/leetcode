@@ -3,23 +3,27 @@ from typing import List
 
 class Solution:
     def generateParenthesis(self, n: int) -> List[str]:
-        li = []
-        self.generateParenthesisString(li, "", 0, 0, n)
-        return li
+        res = []
+        self.recursive(n, "", 0, 0, res)
+        return res
 
-    def generateParenthesisString(self, li: List[str], s: str, open: int, close: int, n: int) -> None:
-        if len(s) == 2 * n:
-            li.append(s)
+    def recursive(self, n: int, s: str, op: int, cl: int, res: List[str]):
+        if len(s) == n * 2:
+            res.append(s)
             return
-        else:
-            if open < n:
-                s += "("
-                self.generateParenthesisString(li, s, open + 1, close, n)
-                s = s[:-1]
-            if open > close:
-                s += ")"
-                self.generateParenthesisString(li, s, open, close + 1, n)
+
+        if op < n:
+            s += "("
+            self.recursive(n, s, op + 1, cl, res)
+            s = s[:-1]
+
+        if op > cl:
+            s += ")"
+            self.recursive(n, s, op, cl + 1, res)
+            s = s[:-1]
+
 
 sol = Solution()
+print(sol.generateParenthesis(3))
 print(sol.generateParenthesis(5))
 print(sol.generateParenthesis(1))

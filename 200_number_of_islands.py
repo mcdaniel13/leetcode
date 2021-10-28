@@ -46,16 +46,38 @@ class Solution:
                                 que.append(ncord)
         return res
 
+    def numIslands_dfs(self, grid: List[List[str]]) -> int:
+        def dfs(i, j):
+            for k in range(len(dr)):
+                ni = i + dr[k][0]
+                nj = j + dr[k][1]
+                if 0 <= ni < vn and 0 <= nj < hn and grid[ni][nj] == '1':
+                    grid[ni][nj] = 'X'
+                    dfs(ni, nj)
+
+        dr = [[1, 0], [-1, 0], [0, 1], [0, -1]]
+        vn = len(grid)
+        hn = len(grid[0])
+        cnt = 0
+        for i in range(vn):
+            for j in range(hn):
+                if grid[i][j] == '1':
+                    grid[i][j] = 'X'
+                    dfs(i, j)
+                    cnt += 1
+        return cnt
+
+
 sol = Solution()
-print(sol.numIslands([["1", "0"]]))
-print(sol.numIslands([
+print(sol.numIslands_dfs([["1", "0"]]))
+print(sol.numIslands_dfs([
     ["1", "1", "1", "1", "0"],
     ["1", "1", "0", "1", "0"],
     ["1", "1", "0", "0", "0"],
     ["0", "0", "0", "0", "0"]
 ]))
 
-print(sol.numIslands([
+print(sol.numIslands_dfs([
     ["1", "1", "0", "0", "0"],
     ["1", "1", "0", "0", "0"],
     ["0", "0", "1", "0", "0"],

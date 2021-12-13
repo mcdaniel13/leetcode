@@ -1,3 +1,6 @@
+# Time Complexity: O(n^3)
+# Space Complexity: O(n)
+
 from typing import List
 
 class Solution:

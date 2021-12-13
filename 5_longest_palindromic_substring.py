@@ -1,3 +1,6 @@
+# Time Complexity: O(n^2)
+# Space Complexity: O(n)
+
 class Solution:
     def longestPalindrome(self, s: str) -> str:
         substr = ""
